@@ -50,7 +50,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button signOut;
+    private Button signOut,btnChat;
     private TextView text_name, textEmail;
     private ImageView img_personPhoto;
 private   GoogleSignInClient mGoogleSignInClient;
@@ -87,10 +87,11 @@ private   GoogleSignInClient mGoogleSignInClient;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         signOut = findViewById(R.id.signOut);
+        btnChat = findViewById(R.id.btnChat);
         img_personPhoto = findViewById(R.id.img_personPhoto);
         text_name = findViewById(R.id.text_name);
-        signOut = findViewById(R.id.signOut);
-
+        signOut.setOnClickListener(this);
+        btnChat.setOnClickListener(this);
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -378,6 +379,10 @@ private   GoogleSignInClient mGoogleSignInClient;
             case R.id.signOut:
                 signOuts();
                 break;
+            case R.id.btnChat:
+                startActivity(new Intent(DashboardActivity.this,ChatActivity.class));
+                finish();
+                        break;
             // ...
         }
     }
